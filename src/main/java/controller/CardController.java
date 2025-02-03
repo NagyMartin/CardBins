@@ -33,8 +33,8 @@ public class CardController {
                     card.setCardExpiry(nextLine[5]);
                     cardList.add(card);
             }
-            System.out.println(cardList);
             cardSchemeValidation(cardList);
+            System.out.println(cardList);
         } catch (IOException e) {
             System.out.println("There was an issue with reading the cards list: " + e.getLocalizedMessage());
             throw new RuntimeException(e);
@@ -45,8 +45,8 @@ public class CardController {
     public void cardSchemeValidation(List<Card> cardList){
         try{
             for(Card card : cardList){
-                if (card.getCardScheme()== null){
-                    cardSorter(card.getBinRange(),card, cardList);
+                if (card.getCardScheme()== null || card.getCardScheme().isEmpty()) {
+                    cardSorter(card.getBinRange(), card, cardList);
                 }
             }
         } catch (Exception e) {
