@@ -16,14 +16,21 @@ public class App
 {
     public static void main( String[] args ) throws CsvValidationException, IOException {
 
-        System.out.println( "Hello World!" );
+        String filepath = "C:\\Users\\Martin\\Desktop\\Projects\\CardBins\\src\\main\\cards.txt";
 
         CardController cardController = new CardController();
+        List<BigDecimal> migratedCard = new ArrayList<>();
         List<BigDecimal> droppedCard = new ArrayList<>();
-        droppedCard.add(BigDecimal.valueOf(6655));
+
+        migratedCard.add(BigDecimal.valueOf(63));
+        droppedCard.add(BigDecimal.valueOf(Double.parseDouble("6655")));
+
+        cardController.setMigratedList(migratedCard);
         cardController.setDropCardList(droppedCard);
+
         System.out.println(droppedCard);
-        cardController.cardListReader("C:\\Users\\Martin\\Desktop\\Projects\\CardBins\\src\\main\\cards.txt");
+        cardController.setFilepath(filepath);
+        System.out.println(cardController.startCheck());
 
     }
 }
