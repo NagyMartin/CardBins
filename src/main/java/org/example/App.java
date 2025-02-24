@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class App 
 {
-    public static void main( String[] args ) throws CsvValidationException, IOException {
+    public static void main( String[] args ) {
 
         String filepath = "C:\\Users\\Martin\\Desktop\\Projects\\CardBins\\src\\main\\cards.txt";
 

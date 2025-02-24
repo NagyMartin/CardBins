@@ -40,17 +40,20 @@ public class CardService {
     }
 
     public void cardChecker(List<BigDecimal> migratedCard, List<BigDecimal> droppedCard) {
+        List<Card> cardsToRemove = new ArrayList<>();
         try {
             for (Card c : cardList) {
-                if (migratedCard.contains(c.getBinRange())) {
-                    c.setCardScheme("DEFAULT");
-                } else if (droppedCard.contains(c.getBinRange())) {
-                    cardList.remove(c);
+                if (c.getCardScheme() == null) {
+                    if (migratedCard.contains(c.getBinRange())) {
+                        c.setCardScheme("DEFAULT");
+                    } else if (droppedCard.contains(c.getBinRange())) {
+                        cardsToRemove.add(c);
+                    }
                 }
-                break;
             }
+            cardList.removeAll(cardsToRemove);
         } catch (RuntimeException e) {
-            throw new RuntimeException(e.getLocalizedMessage());
+            throw new RuntimeException(e);
         }
     }
 }
